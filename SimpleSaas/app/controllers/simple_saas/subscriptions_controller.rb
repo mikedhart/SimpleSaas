@@ -44,11 +44,11 @@ module SimpleSaas
     # POST /subscriptions.json
     def create
       @subscription = Subscription.new(params[:subscription])
-      @subscription.renew_at = Time.now + @subscription.subscription_type.duration.days
+      @subscription.renew_on = Time.now + @subscription.subscription_type.duration.days
   
       respond_to do |format|
         if @subscription.save
-          format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+          format.html { redirect_to subscriptions_path, notice: 'Subscription was successfully created.' }
           format.json { render json: @subscription, status: :created, location: @subscription }
         else
           format.html { render action: "new" }
