@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SimpleSaas::VERSION
   s.authors     = ["Mike Hart"]
   s.email       = ["info@mikedhart.co.uk"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/mikedhart/SimpleSaas"
   s.summary     = "Skeleton Saas App"
   s.description = "Skeleton Saas App"
 
