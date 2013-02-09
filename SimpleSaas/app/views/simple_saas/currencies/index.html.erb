@@ -1,0 +1,27 @@
+<h1>Listing currencies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Html symbol</th>
+    <th>Short code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @currencies.each do |currency| %>
+  <tr>
+    <td><%= currency.name %></td>
+    <td><%= currency.html_symbol %></td>
+    <td><%= currency.short_code %></td>
+    <td><%= link_to 'Show', currency %></td>
+    <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
+    <td><%= link_to 'Destroy', currency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Currency', new_currency_path %>

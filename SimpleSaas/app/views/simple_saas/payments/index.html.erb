@@ -1,0 +1,33 @@
+<h1>Listing payments</h1>
+
+<table>
+  <tr>
+    <th>Transaction</th>
+    <th>Currency</th>
+    <th>Payment type</th>
+    <th>Amount</th>
+    <th>Rebased</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @payments.each do |payment| %>
+  <tr>
+    <td><%= payment.transaction_id %></td>
+    <td><%= payment.currency_id %></td>
+    <td><%= payment.payment_type_id %></td>
+    <td><%= payment.amount %></td>
+    <td><%= payment.rebased %></td>
+    <td><%= payment.comment %></td>
+    <td><%= link_to 'Show', payment %></td>
+    <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
+    <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Payment', new_payment_path %>

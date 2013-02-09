@@ -25,18 +25,18 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: dummy_test
+  database: simple_saas_test
   pool: 5
   username: root
-  password:
-  host: localhost
+  password: root
+  host: 127.0.0.1
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: dummy_production
+  database: simple_saas_production
   pool: 5
   username: root
-  password:
-  host: localhost
+  password: root
+  host: 127.0.0.1

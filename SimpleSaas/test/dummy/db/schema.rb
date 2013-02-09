@@ -11,6 +11,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130208081946) do
+
+  create_table "simple_saas_currencies", :force => true do |t|
+    t.string   "name"
+    t.string   "html_symbol"
+    t.string   "short_code"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "simple_saas_payment_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "simple_saas_payments", :force => true do |t|
+    t.string   "transaction_id"
+    t.string   "currency_id"
+    t.integer  "payment_type_id"
+    t.float    "amount"
+    t.float    "rebased"
+    t.text     "comment"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "simple_saas_subscription_types", :force => true do |t|
+    t.string   "name"
+    t.integer  "duration"
+    t.float    "cost"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "simple_saas_subscriptions", :force => true do |t|
+    t.integer  "subscription_type_id"
+    t.integer  "user_id"
+    t.datetime "renew_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
 end

@@ -1,4 +1,19 @@
 SimpleSaas::Engine.routes.draw do
-  devise_for :users, :class_name => "SimpleSaas::User"
+  resources :subscription_types
+
+
+  resources :currencies
+
+
+  resources :payment_types
+
+
+  resources :payments
+
+
+  resources :subscriptions
+  
+
+  root :to => "subscriptions#index"
 
 end

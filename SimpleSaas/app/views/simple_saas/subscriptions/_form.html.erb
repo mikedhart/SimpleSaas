@@ -1,0 +1,27 @@
+<%= form_for(@subscription) do |f| %>
+  <% if @subscription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+
+      <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :subscription_type_id, :class => "control-label" %><br />
+    <div class="controls">
+      <%= f.select :subscription_type_id, SimpleSaas::SubscriptionType.all.map{ |p| [p.name, p.id] } %>
+    </div><!-- controls -->
+  </div><!-- control-group -->
+
+  <%= f.hidden_field :user_id, :value => @user_id %>
+    
+  <div class="btn-group">
+    <%= link_to 'Back', subscriptions_path, :class => "btn" %>
+    <%= f.submit :class => "btn btn-success" %>
+  </div>
+<% end %>

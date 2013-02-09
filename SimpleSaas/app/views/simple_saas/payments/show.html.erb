@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Transaction:</b>
+  <%= @payment.transaction_id %>
+</p>
+
+<p>
+  <b>Currency:</b>
+  <%= @payment.currency_id %>
+</p>
+
+<p>
+  <b>Payment type:</b>
+  <%= @payment.payment_type_id %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @payment.amount %>
+</p>
+
+<p>
+  <b>Rebased:</b>
+  <%= @payment.rebased %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @payment.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

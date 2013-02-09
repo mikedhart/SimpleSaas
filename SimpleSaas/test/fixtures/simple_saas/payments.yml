@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  transaction_id: MyString
+  currency_id: MyString
+  payment_type_id: 1
+  amount: 1.5
+  rebased: 1.5
+  comment: MyText
+
+two:
+  transaction_id: MyString
+  currency_id: MyString
+  payment_type_id: 1
+  amount: 1.5
+  rebased: 1.5
+  comment: MyText
