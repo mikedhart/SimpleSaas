@@ -14,7 +14,7 @@
           <tbody>
             <% @subscriptions.each do |subscription| %>
               <tr>
-                <td><%= subscription.subscription_type_id %></td>
+                <td><%= subscription.subscription_type.name %></td>
                 <td><%= subscription.renew_on %></td>
                 <td><%= link_to 'Cancel', subscription, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

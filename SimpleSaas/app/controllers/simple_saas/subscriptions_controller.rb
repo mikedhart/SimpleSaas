@@ -5,7 +5,7 @@ module SimpleSaas
     # GET /subscriptions
     # GET /subscriptions.json
     def index
-      @subscriptions = Subscription.all
+      @subscriptions = Subscription.where("active = #{true}").all
   
       respond_to do |format|
         format.html # index.html.erb
@@ -77,7 +77,8 @@ module SimpleSaas
     # DELETE /subscriptions/1.json
     def destroy
       @subscription = Subscription.find(params[:id])
-      @subscription.destroy
+      @subscription.active = false;
+      @subscription.save
   
       respond_to do |format|
         format.html { redirect_to subscriptions_url }

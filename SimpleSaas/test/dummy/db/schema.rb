@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209134240) do
+ActiveRecord::Schema.define(:version => 20130212142343) do
 
   create_table "simple_saas_currencies", :force => true do |t|
     t.string   "name"
@@ -49,9 +49,10 @@ ActiveRecord::Schema.define(:version => 20130209134240) do
   create_table "simple_saas_subscriptions", :force => true do |t|
     t.integer  "subscription_type_id"
     t.integer  "user_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.date     "renew_on"
+    t.boolean  "active",               :default => true
   end
 
 end
