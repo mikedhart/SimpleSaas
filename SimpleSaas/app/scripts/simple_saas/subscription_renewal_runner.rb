@@ -2,7 +2,7 @@ module SimpleSaas
   class SubscriptionRenewalRunner
   	def self.run
   	  # Get subscriptions to renew.
-  	  to_renew = SimpleSaas::Subscription.where("renew_on = '#{Date.current}' AND active = 1").all
+  	  to_renew = Subscription.where("renew_on = '#{Date.current}' AND active = 1").all
 
   	  # For each, take payment then update the renew on date.
   	  to_renew.each do |subscription|
