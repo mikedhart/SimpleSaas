@@ -18,9 +18,28 @@
   <%= f.hidden_field :payment_type_id, :value => 1 %>
 
   <input type="hidden" name="cmd" value="_xclick" />
-  <input type="hidden" name="business" value="seller_1361816388_biz@mikedhart.co.uk" />
-  <input type="hidden" name="amount" value="<%= @subscription.subscription_type.cost %>">
-  <input type="hidden" name="item_name" value="<%= @subscription.subscription_type.name %>">
+  
+  <input type="hidden" name="amount" value="<%= @subscription.subscription_type.cost %>" />
+  <input type="hidden" name="item_name" value="<%= @subscription.subscription_type.name %>" />
+
+  <% if defined? PAYPAL_BUSINESS %>
+    <input type="hidden" name="business" value="<%= PAYPAL_BUSINESS %>" />
+  <% else %>
+    <input type="hidden" name="business" value="seller_1361816388_biz@mikedhart.co.uk" />
+  <% end %>
+
+  <% if defined? PAYPAL_RETURN %>
+    <input type="hidden" name="return" value="<%= PAYPAL_RETURN %>" />
+  <% else %>
+    <input type="hidden" name="return" value="http://<%= request.host + request.port.to_s + request.fullpath %>" />
+  <% end %>
+
+  <% if defined? PAYPAL_NOTIFY_URL %>
+    <input type="hidden" name="notify_url" value="<%= PAYPAL_NOTIFY_URL %>" />
+  <% else %>
+    <input type="hidden" name="notify_url" value="http://<%= request.host + ":" + request.port.to_s + payments_path %>" />
+  <% end %>
+
   <input type="hidden" name="currency_code" value="GBP" />
 
   <div class="field">
