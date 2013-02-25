@@ -45,7 +45,7 @@ module SimpleSaas
     # POST /payments
     # POST /payments.json
     def create
-      currency = Currency.find_by_short_code(params[:currency_code])
+      currency = Currency.find_by_short_code(params[:mc_currency])
       subscription = Subscription.find(params[:invoice])
       payment = Payment.create!(
         :payment_type_id => PaymentType.find_by_name("cr").id,
