@@ -49,9 +49,9 @@ module SimpleSaas
       subscription = Subscription.find(params[:invoice])
       payment = Payment.create!(
         :payment_type_id => PaymentType.find_by_name("cr").id,
-        :amount => params[:amount],
+        :amount => params[:mc_gross],
         :currency_id => currency.id,
-        :rebased => (params[:amount].to_f / currency.exchange_rate),
+        :rebased => (params[:mc_gross].to_f / currency.exchange_rate),
         :subscription_id => subscription.id,
         :transaction_id => params[:txn_id],
         :comment => params
