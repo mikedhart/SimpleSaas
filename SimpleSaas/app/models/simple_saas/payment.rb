@@ -5,5 +5,7 @@ module SimpleSaas
     belongs_to :subscription
     belongs_to :currency
     belongs_to :payment_type
+
+    serialize :comment
   end
 end

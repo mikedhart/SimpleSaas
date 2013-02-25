@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225170654) do
+ActiveRecord::Schema.define(:version => 20130225223003) do
 
   create_table "simple_saas_currencies", :force => true do |t|
     t.string   "name"
     t.string   "html_symbol"
     t.string   "short_code"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.float    "exchange_rate"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.float    "exchange_rate", :limit => 8
   end
 
   create_table "simple_saas_payment_types", :force => true do |t|
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(:version => 20130225170654) do
     t.string   "transaction_id"
     t.string   "currency_id"
     t.integer  "payment_type_id"
-    t.float    "amount"
-    t.float    "rebased"
+    t.float    "amount",          :limit => 8
+    t.float    "rebased",         :limit => 8
     t.text     "comment"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "subscription_id"
   end
 

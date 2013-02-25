@@ -46,14 +46,21 @@ module SimpleSaas
     # POST /payments.json
     def create
       currency = Currency.find_by_short_code(params[:currency_code])
+      subscription = Subscription.find(params[:subscription_id])
       payment = Payment.create!(
         :payment_type_id => PaymentType.find_by_name("cr").id,
         :amount => params[:amount],
         :currency_id => currency.id,
-        :rebased => params[:amount] / currency.exchange_rate,
-        :subscription_id => params[:subscription_id],
-        :transaction_id => params[:txn_id]
+        :rebased => (params[:amount].to_f / currency.exchange_rate),
+        :subscription_id => subscription.id,
+        :transaction_id => params[:txn_id],
+        :comment => params
       )
+
+      if params[:payment_status] == "Completed" then
+        subscription.active = 1
+        subscription.save
+      end
   
       render :nothing => true
     end
