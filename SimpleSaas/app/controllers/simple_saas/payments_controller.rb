@@ -28,6 +28,7 @@ module SimpleSaas
     # GET /payments/new.json
     def new
       @payment = Payment.new
+      @subscription = Subscription.find(params[:subscription_id])
   
       respond_to do |format|
         format.html # new.html.erb

@@ -7,6 +7,7 @@
             <tr>
               <th>Subscription type</th>
               <th>Renewal date</th>
+              <th>Active</th>
               <th></th>
             </tr>
           </thead>
@@ -16,6 +17,13 @@
               <tr>
                 <td><%= subscription.subscription_type.name %></td>
                 <td><%= subscription.renew_on %></td>
+                <td>
+                  <% if subscription.active then %>
+                    Yes
+                  <% else %>
+                    <%= link_to "Payment required", new_subscription_payment_path(subscription) %>
+                  <% end %>
+                </td>
                 <td><%= link_to 'Cancel', subscription, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>

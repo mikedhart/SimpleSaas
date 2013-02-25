@@ -12,6 +12,11 @@ SimpleSaas::Engine.routes.draw do
 
 
   resources :subscriptions
+
+
+  resources :subscriptions do
+    resources :payments
+  end
   
 
   root :to => "subscriptions#index"

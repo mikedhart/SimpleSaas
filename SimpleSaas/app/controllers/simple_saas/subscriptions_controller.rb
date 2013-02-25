@@ -5,7 +5,7 @@ module SimpleSaas
     # GET /subscriptions
     # GET /subscriptions.json
     def index
-      @subscriptions = Subscription.where("active = #{true}").all
+      @subscriptions = Subscription.all
   
       respond_to do |format|
         format.html # index.html.erb

@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212142343) do
+ActiveRecord::Schema.define(:version => 20130225170654) do
 
   create_table "simple_saas_currencies", :force => true do |t|
     t.string   "name"
     t.string   "html_symbol"
     t.string   "short_code"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.float    "exchange_rate"
   end
 
   create_table "simple_saas_payment_types", :force => true do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130212142343) do
     t.text     "comment"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "subscription_id"
   end
 
   create_table "simple_saas_subscription_types", :force => true do |t|
@@ -49,10 +51,10 @@ ActiveRecord::Schema.define(:version => 20130212142343) do
   create_table "simple_saas_subscriptions", :force => true do |t|
     t.integer  "subscription_type_id"
     t.integer  "user_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.date     "renew_on"
-    t.boolean  "active",               :default => true
+    t.boolean  "active",               :default => false
   end
 
 end
