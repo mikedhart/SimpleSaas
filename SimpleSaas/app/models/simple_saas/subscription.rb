@@ -3,7 +3,7 @@ module SimpleSaas
     attr_accessible :renew_at, :subscription_type_id, :user_id
 
     belongs_to :subscription_type
-    belongs_to :has_one
+    #belongs_to :currency
 
     after_create :create_payment
 
