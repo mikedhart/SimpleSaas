@@ -7,7 +7,7 @@ module SimpleSaas
       app.middleware.use SimpleSaas::Middleware
     end
 
-    initializer :my_engine do
+    initializer :simple_saas do
       ActiveAdmin.application.load_paths.unshift Dir[File.dirname(__FILE__) + '/simple_saas/admin']
     end
   end
