@@ -1,6 +1,6 @@
 module SimpleSaas
   class Subscription < ActiveRecord::Base
-    attr_accessible :renew_at, :subscription_type_id, :user_id
+    attr_accessible :renew_at, :subscription_type_id, :user_id, :active
 
     belongs_to :subscription_type
     #belongs_to :currency
