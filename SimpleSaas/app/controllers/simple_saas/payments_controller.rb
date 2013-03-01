@@ -58,8 +58,10 @@ module SimpleSaas
       )
 
       if params[:payment_status] == "Completed" then
-        subscription.active = 1
+        subscription.active = true
         subscription.save
+
+        payment.comment = payment.comment + "Set subscription to active"
       end
   
       render :nothing => true
