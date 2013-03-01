@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225223003) do
+ActiveRecord::Schema.define(:version => 20130301005958) do
 
   create_table "simple_saas_currencies", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130225223003) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.integer  "subscription_id"
+    t.string   "payment_status"
   end
 
   create_table "simple_saas_subscription_types", :force => true do |t|

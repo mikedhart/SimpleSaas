@@ -47,6 +47,12 @@ module SimpleSaas
     def create
       currency = Currency.find_by_short_code(params[:mc_currency])
       subscription = Subscription.find(params[:invoice])
+
+      if params[:payment_status] == "Completed" then
+        subscription.active = true
+        subscription.save
+      end
+      
       payment = Payment.create!(
         :payment_type_id => PaymentType.find_by_name("cr").id,
         :amount => params[:mc_gross],
@@ -54,15 +60,9 @@ module SimpleSaas
         :rebased => (params[:mc_gross].to_f / currency.exchange_rate),
         :subscription_id => subscription.id,
         :transaction_id => params[:txn_id],
-        :comment => params
+        :comment => params,
+        :payment_status => params[:payment_status]
       )
-
-      if params[:payment_status] == "Completed" then
-        subscription.active = true
-        subscription.save
-
-        payment.comment = payment.comment + "Set subscription to active"
-      end
   
       render :nothing => true
     end
