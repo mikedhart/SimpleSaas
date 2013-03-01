@@ -49,7 +49,8 @@ module SimpleSaas
       subscription = Subscription.find(params[:invoice])
 
       if params[:payment_status] == "Completed" then
-        subscription.active = 1
+        subscription.active = true
+        subscription.renew_on = Date.current + subscription.subscription_type.duration.days
         subscription.save
       end
 
@@ -63,7 +64,7 @@ module SimpleSaas
         :comment => params,
         :payment_status => params[:payment_status]
       )
-  
+
       render :nothing => true
     end
   

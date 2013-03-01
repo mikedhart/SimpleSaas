@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301005958) do
+ActiveRecord::Schema.define(:version => 20130301074459) do
 
   create_table "simple_saas_currencies", :force => true do |t|
     t.string   "name"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130301005958) do
     t.datetime "updated_at",                              :null => false
     t.date     "renew_on"
     t.boolean  "active",               :default => false
+    t.boolean  "deleted"
   end
 
 end

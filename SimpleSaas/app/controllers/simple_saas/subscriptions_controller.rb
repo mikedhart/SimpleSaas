@@ -78,6 +78,7 @@ module SimpleSaas
     def destroy
       @subscription = Subscription.find(params[:id])
       @subscription.active = false;
+      @subscription.deleted = true;
       @subscription.save
   
       respond_to do |format|
