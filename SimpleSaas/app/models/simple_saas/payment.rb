@@ -1,6 +1,6 @@
 module SimpleSaas
   class Payment < ActiveRecord::Base
-    attr_accessible :amount, :comment, :currency_id, :payment_type_id, :rebased, :transaction_id, :subscription_id
+    attr_accessible :amount, :comment, :currency_id, :payment_type_id, :rebased, :transaction_id, :subscription_id, :payment_status
 
     belongs_to :subscription
     belongs_to :currency
