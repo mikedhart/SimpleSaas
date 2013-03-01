@@ -49,10 +49,10 @@ module SimpleSaas
       subscription = Subscription.find(params[:invoice])
 
       if params[:payment_status] == "Completed" then
-        subscription.active = true
+        subscription.active = 1
         subscription.save
       end
-      
+
       payment = Payment.create!(
         :payment_type_id => PaymentType.find_by_name("cr").id,
         :amount => params[:mc_gross],
