@@ -1,4 +1,7 @@
 SimpleSaas::Engine.routes.draw do
+  resources :payment_methods
+
+
   resources :subscription_types
 
 

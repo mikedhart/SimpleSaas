@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     simple_saas (0.0.1)
+      paypal-recurring (~> 1.1)
       rails (~> 3.2.11)
 
 GEM
@@ -48,9 +49,10 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.20.1)
+    mime-types (1.23)
     multi_json (1.5.0)
     mysql2 (0.3.11-x86-mingw32)
+    paypal-recurring (1.1.0)
     polyglot (0.3.3)
     rack (1.4.4)
     rack-cache (1.2)
@@ -87,7 +89,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.35)
+    tzinfo (0.3.37)
 
 PLATFORMS
   x86-mingw32

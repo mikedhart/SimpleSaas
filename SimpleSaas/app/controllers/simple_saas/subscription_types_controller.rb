@@ -20,7 +20,7 @@ module SimpleSaas
   
       respond_to do |format|
         format.html # show.html.erb
-        format.json { render json: @subscription_type }
+        format.json { render json: @subscription_type, include: :payment_method }
       end
     end
   

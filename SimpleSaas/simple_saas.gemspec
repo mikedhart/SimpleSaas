@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.11"
+  s.add_dependency "paypal-recurring", "~> 1.1"
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "mysql2", "~> 0.3.11"

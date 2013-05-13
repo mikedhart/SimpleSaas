@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301074459) do
+ActiveRecord::Schema.define(:version => 20130513085449) do
 
   create_table "simple_saas_currencies", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(:version => 20130301074459) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.float    "exchange_rate", :limit => 8
+  end
+
+  create_table "simple_saas_payment_methods", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "simple_saas_payment_types", :force => true do |t|
@@ -39,14 +45,16 @@ ActiveRecord::Schema.define(:version => 20130301074459) do
     t.datetime "updated_at",                   :null => false
     t.integer  "subscription_id"
     t.string   "payment_status"
+    t.string   "profile_id"
   end
 
   create_table "simple_saas_subscription_types", :force => true do |t|
     t.string   "name"
     t.integer  "duration"
     t.float    "cost"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "payment_method_id"
   end
 
   create_table "simple_saas_subscriptions", :force => true do |t|
@@ -57,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20130301074459) do
     t.date     "renew_on"
     t.boolean  "active",               :default => false
     t.boolean  "deleted"
+    t.string   "token"
+    t.string   "payer_id"
   end
 
 end

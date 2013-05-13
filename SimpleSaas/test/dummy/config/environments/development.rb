@@ -35,3 +35,8 @@ Dummy::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+PAYPAL_NOTIFY_URL = "http://dev.mobi-advisor.com/s/payments"
+PAYPAL_BUSINESS = "davidmarsden886@yahoo.co.uk"
+PAYPAL_RETURN = "http://dev.mobi-advisor.com/s"
+DOMAIN = "localhost:3000"

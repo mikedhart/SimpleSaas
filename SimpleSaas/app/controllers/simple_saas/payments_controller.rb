@@ -30,10 +30,73 @@ module SimpleSaas
     def new
       @payment = Payment.new
       @subscription = Subscription.find(params[:subscription_id])
-  
+
+      self.method(@subscription.subscription_type.payment_method.name).call
+    end
+
+    def paypal_express
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @payment }
+      end
+    end
+
+    def paypal_recurring
+      if (params[:token] && params[:PayerID])
+        @subscription.token = params[:token]
+        @subscription.payer_id = params[:PayerID]
+        @subscription.save
+
+        ppr = PayPal::Recurring.new({
+          :token       => params[:token],
+          :payer_id    => params[:PayerID],
+          :amount      => @subscription.subscription_type.cost.to_s,
+          :description => @subscription.subscription_type.name.to_s
+        })
+
+        response = ppr.request_payment
+        # response.approved?
+        # response.completed?
+
+        if (response.approved?) then
+          ppr = PayPal::Recurring.new({
+            :amount          => @subscription.subscription_type.cost.to_s,
+            :currency        => "USD",
+            :description     => @subscription.subscription_type.name.to_s,
+            :ipn_url         => PAYPAL_NOTIFY_URL,
+            :frequency       => 1,
+            :token           => params[:token],
+            :period          => :monthly,
+            :payer_id        => params[:PayerID],
+            :start_at        => Time.now,
+            :failed          => 1,
+            :outstanding     => :next_billing,
+            :trial_length    => 1,
+            :trial_period    => :monthly,
+            :trial_frequency => 1
+          })
+
+          puts "**edeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee***************/*/"
+          response = ppr.create_recurring_profile
+          @subscription.profile_id = response.profile_id
+          @subscription.save
+        else
+          raise response.errors.inspect
+        end
+      else
+        ppr = PayPal::Recurring.new({
+          :return_url   => "http://localhost:3000/s/subscriptions/#{@subscription.id}/new",
+          :cancel_url   => PAYPAL_RETURN,
+          :ipn_url      => PAYPAL_NOTIFY_URL,
+          :description  => @subscription.subscription_type.name.to_s,
+          :amount       => @subscription.subscription_type.cost.to_s,
+          :currency     => "USD"
+        })
+
+        response = ppr.checkout
+        puts "*************************************"
+        
+        redirect_to response.checkout_url if response.valid?
       end
     end
   
@@ -46,7 +109,7 @@ module SimpleSaas
     # POST /payments.json
     def create
       currency = Currency.find_by_short_code(params[:mc_currency])
-      subscription = Subscription.find(params[:invoice])
+      subscription = (params[:payer_id]) ? Subscription.find_by_payer_id(params[:payer_id]) : Subscription.find(params[:invoice])
 
       if params[:payment_status] == "Completed" then
         subscription.active = true
@@ -65,7 +128,7 @@ module SimpleSaas
         :payment_status => params[:payment_status]
       )
 
-      render :nothing => true
+
     end
   
     # PUT /payments/1

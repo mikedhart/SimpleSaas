@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount SimpleSaas::Engine => "/simple_saas"
+  mount SimpleSaas::Engine => "/s"
 end
