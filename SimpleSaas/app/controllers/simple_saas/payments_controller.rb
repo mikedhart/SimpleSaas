@@ -47,6 +47,8 @@ module SimpleSaas
         @subscription.payer_id = params[:PayerID]
         @subscription.save
 
+        puts "********** HERE ********** HERE ********** HERE ********** HERE ********** HERE "
+
         ppr = PayPal::Recurring.new({
           :token       => params[:token],
           :payer_id    => params[:PayerID],
@@ -59,6 +61,7 @@ module SimpleSaas
         # response.completed?
 
         if (response.approved?) then
+          puts "********** HERE2 ********** HERE2 ********** HERE2 ********** HERE2 ********** HERE2 "
           ppr = PayPal::Recurring.new({
             :amount          => @subscription.subscription_type.cost.to_s,
             :currency        => "USD",
@@ -80,12 +83,19 @@ module SimpleSaas
           response = ppr.create_recurring_profile
           @subscription.profile_id = response.profile_id
           @subscription.save
+
+          render "paypal_recurring"
         else
           raise response.errors.inspect
+          response.errors.each do |error|
+            flash[:notice] = error
+          end
+
+          redirect_to subscriptions_path
         end
       else
         ppr = PayPal::Recurring.new({
-          :return_url   => "http://localhost:3000/s/subscriptions/#{@subscription.id}/new",
+          :return_url   => "http://localhost:3000/s/subscriptions/#{@subscription.id}/payments/new",
           :cancel_url   => PAYPAL_RETURN,
           :ipn_url      => PAYPAL_NOTIFY_URL,
           :description  => @subscription.subscription_type.name.to_s,

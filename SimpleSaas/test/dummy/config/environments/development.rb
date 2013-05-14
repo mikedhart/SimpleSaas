@@ -37,6 +37,7 @@ Dummy::Application.configure do
 end
 
 PAYPAL_NOTIFY_URL = "http://dev.mobi-advisor.com/s/payments"
-PAYPAL_BUSINESS = "davidmarsden886@yahoo.co.uk"
+# PAYPAL_BUSINESS = "davidmarsden886@yahoo.co.uk"
+PAYPAL_BUSINESS = "payments@mikedhart.co.uk"
 PAYPAL_RETURN = "http://dev.mobi-advisor.com/s"
 DOMAIN = "localhost:3000"
