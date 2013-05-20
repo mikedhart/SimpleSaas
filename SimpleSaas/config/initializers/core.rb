@@ -9,4 +9,4 @@ module SimpleSaas
   end
 end
 
-DEFAULT_CURRENCY = "USD"
+DEFAULT_CURRENCY = "GBP"
