@@ -101,7 +101,7 @@ module SimpleSaas
           :ipn_url      => PAYPAL_NOTIFY_URL,
           :description  => @subscription.subscription_type.name.to_s,
           :amount       => @subscription.subscription_type.cost.to_s,
-          :currency     => "USD"
+          :currency     => DEFAULT_CURRENCY
         })
 
         response = ppr.checkout
