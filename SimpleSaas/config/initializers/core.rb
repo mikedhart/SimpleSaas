@@ -8,3 +8,5 @@ module SimpleSaas
     end
   end
 end
+
+DEFAULT_CURRENCY = "USD"

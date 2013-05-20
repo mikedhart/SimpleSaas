@@ -41,7 +41,7 @@
     <input type="hidden" name="notify_url" value="http://<%= request.host + ":" + request.port.to_s + payments_path %>" />
   <% end %>
 
-  <input type="hidden" name="currency_code" value="GBP" />
+  <input type="hidden" name="currency_code" value="<%= DEFAULT_CURRENCY %>" />
 
   <div class="field">
     <%= f.label :amount %><br />

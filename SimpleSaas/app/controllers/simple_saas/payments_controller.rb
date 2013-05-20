@@ -95,7 +95,7 @@ module SimpleSaas
         end
       else
         ppr = PayPal::Recurring.new({
-          :return_url   => "http://localhost:3000/s/subscriptions/#{@subscription.id}/payments/new",
+          :return_url   => "http://#{DOMAIN}/s/subscriptions/#{@subscription.id}/payments/new",
           :cancel_url   => PAYPAL_RETURN,
           :ipn_url      => PAYPAL_NOTIFY_URL,
           :description  => @subscription.subscription_type.name.to_s,
