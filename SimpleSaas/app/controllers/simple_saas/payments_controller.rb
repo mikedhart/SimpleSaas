@@ -53,6 +53,7 @@ module SimpleSaas
           :token       => params[:token],
           :payer_id    => params[:PayerID],
           :amount      => @subscription.subscription_type.cost.to_s,
+          :currency    => DEFAULT_CURRENCY,
           :description => @subscription.subscription_type.name.to_s
         })
 
@@ -64,7 +65,7 @@ module SimpleSaas
           puts "********** HERE2 ********** HERE2 ********** HERE2 ********** HERE2 ********** HERE2 "
           ppr = PayPal::Recurring.new({
             :amount          => @subscription.subscription_type.cost.to_s,
-            :currency        => "USD",
+            :currency        => DEFAULT_CURRENCY,
             :description     => @subscription.subscription_type.name.to_s,
             :ipn_url         => PAYPAL_NOTIFY_URL,
             :frequency       => 1,

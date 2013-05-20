@@ -8,7 +8,7 @@ module SimpleSaas
     after_create :create_payment
 
     def create_payment
-      @currency = Currency.find_by_short_code("gbp")
+      @currency = Currency.find_by_short_code(DEFAULT_CURRENCY)
 
       @payment = Payment.create!(
       	:payment_type_id => PaymentType.find_by_name("dr").id,
